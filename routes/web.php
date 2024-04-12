@@ -11,8 +11,15 @@
 |
 */
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;;
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('chat');
+});
+
+Route::post('messages', function (Request $request) {
+    \App\Events\Message::dispatch($request->input('body'));
 });
 
 Auth::routes();
